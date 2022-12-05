@@ -3,8 +3,12 @@
 
 import fsp from 'fs/promises';
 import pth from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pth.dirname(__filename);
+
 const create = async () => {
-  const path = pth.join('src', 'fs', 'files', 'fresh.txt');
+  const path = pth.join(__dirname, 'files', 'fresh.txt');
   const data = 'I am fresh and young';
   await fsp.access(path)
     .then(() => { throw new Error('file exists') })
